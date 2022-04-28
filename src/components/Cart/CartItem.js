@@ -4,7 +4,7 @@ import { cartActions } from '../../store/cart';
 
 import classes from './CartItem.module.css';
 
-const CartItem = ({ title, quantity, price, id, total }) => {
+const CartItem = ({ title, quantity, price, id, totalPrice }) => {
     const dispatch = useDispatch();
 
     const incrementQuantityHandler = () =>
@@ -18,7 +18,7 @@ const CartItem = ({ title, quantity, price, id, total }) => {
             <header>
                 <h3>{title}</h3>
                 <div className={classes.price}>
-                    ${total.toFixed(2)}{' '}
+                    ${totalPrice.toFixed(2)}{' '}
                     <span className={classes.itemprice}>
                         (${price.toFixed(2)}/item)
                     </span>
