@@ -34,18 +34,25 @@ const cartSlice = createSlice({
 
             if (existingProduct) {
                 existingProduct.quantity++;
-            } else {
-                const productToAdd = {
-                    ...action.payload,
-                    quantity: 1
-                };
-                state.items.push(productToAdd);
+                return;
             }
 
-            // console.log('existingProduct', current(existingProduct));
+            const productToAdd = {
+                ...action.payload,
+                quantity: 1
+            };
+            state.items.push(productToAdd);
+        },
+        incrementQuantity(state, action) {
+            const id = action.payload;
 
-            // console.log('state', state);
-            // console.log('action', action);
+            const existingProduct = state.items.find((item) => item.id === id);
+
+            if (existingProduct) {
+                existingProduct.quantity++;
+                return;
+            }
+            throw new Error('No product with provided id');
         }
     }
 });
