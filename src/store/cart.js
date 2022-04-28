@@ -2,7 +2,8 @@ import { createSlice, current } from '@reduxjs/toolkit';
 
 const initialState = {
     showCart: true,
-    items: []
+    items: [],
+    totalQuantity: 0
 };
 
 const cartSlice = createSlice({
@@ -14,20 +15,20 @@ const cartSlice = createSlice({
         },
         addToCart(state, action) {
             const { id, price } = action.payload;
+            state.totalQuantity++;
 
             const existingProduct = state.items.find((item) => item.id === id);
 
             if (existingProduct) {
                 existingProduct.quantity++;
-                existingProduct.total =
-                    existingProduct.quantity * existingProduct.price;
+                existingProduct.totalPrice += existingProduct.price;
                 return;
             }
 
             const productToAdd = {
                 ...action.payload,
                 quantity: 1,
-                total: 1 * price
+                totalPrice: 1 * price
             };
             state.items.push(productToAdd);
         },
@@ -38,12 +39,15 @@ const cartSlice = createSlice({
 
             if (existingProduct) {
                 existingProduct.quantity++;
+                existingProduct.totalPrice += existingProduct.price;
+                state.totalQuantity++;
                 return;
             }
             throw new Error('No product with provided id');
         },
         decrementQuantity(state, action) {
             const id = action.payload;
+            state.totalQuantity--;
 
             const existingProduct = state.items.find((item) => item.id === id);
 
@@ -53,6 +57,7 @@ const cartSlice = createSlice({
 
             if (existingProduct.quantity > 1) {
                 existingProduct.quantity--;
+                existingProduct.totalPrice -= existingProduct.price;
             } else {
                 state.items = state.items.filter((item) => item.id !== id);
             }
