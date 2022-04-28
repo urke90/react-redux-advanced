@@ -4,9 +4,7 @@ import { cartActions } from '../../store/cart';
 
 import classes from './CartItem.module.css';
 
-const CartItem = ({ title, quantity, price, id }) => {
-    const total = quantity * price;
-
+const CartItem = ({ title, quantity, price, id, total }) => {
     const dispatch = useDispatch();
 
     const incrementQuantityHandler = () =>
