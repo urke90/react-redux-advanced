@@ -13,7 +13,7 @@ const initialState = {
         {
             id: 'p2',
             title: 'second product',
-            price: 9,
+            price: 10,
             description: 'This is a second product - wooot!',
             quantity: 2
         }
