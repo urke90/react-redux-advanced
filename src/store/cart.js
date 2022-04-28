@@ -41,6 +41,21 @@ const cartSlice = createSlice({
                 return;
             }
             throw new Error('No product with provided id');
+        },
+        decrementQuantity(state, action) {
+            const id = action.payload;
+
+            const existingProduct = state.items.find((item) => item.id === id);
+
+            if (!existingProduct) {
+                throw new Error('No product found with provided ID');
+            }
+
+            if (existingProduct.quantity > 1) {
+                existingProduct.quantity--;
+            } else {
+                state.items = state.items.filter((item) => item.id !== id);
+            }
         }
     }
 });

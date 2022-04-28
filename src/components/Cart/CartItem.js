@@ -10,6 +10,9 @@ const CartItem = ({ title, quantity, price, id, total }) => {
     const incrementQuantityHandler = () =>
         dispatch(cartActions.incrementQuantity(id));
 
+    const decrementQuantityHandler = () =>
+        dispatch(cartActions.decrementQuantity(id));
+
     return (
         <li className={classes.item}>
             <header>
@@ -26,7 +29,7 @@ const CartItem = ({ title, quantity, price, id, total }) => {
                     x <span>{quantity}</span>
                 </div>
                 <div className={classes.actions}>
-                    <button>-</button>
+                    <button onClick={decrementQuantityHandler}>-</button>
                     <button onClick={incrementQuantityHandler}>+</button>
                 </div>
             </div>
