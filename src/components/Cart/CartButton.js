@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { cartActions } from '../../store/cart';
+import { cartActions } from '../../store/cart/cart';
 
 import classes from './CartButton.module.css';
 

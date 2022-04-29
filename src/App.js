@@ -7,6 +7,10 @@ import Products from './components/Shop/Products';
 function App() {
     const showCart = useSelector((state) => state.cartReducer.showCart);
 
+    const bla = useSelector((state) => {
+        console.log('state', state);
+    });
+
     return (
         <Layout>
             {showCart && <Cart />}
