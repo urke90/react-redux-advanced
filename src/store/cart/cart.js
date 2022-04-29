@@ -1,4 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+import { uiActions } from '../UI/ui';
 
 const initialState = {
     showCart: true,
@@ -64,6 +67,28 @@ const cartSlice = createSlice({
         }
     }
 });
+
+export const sendCartData = (cartData) => {
+    return async (dispatch) => {
+        const sendRequest = async () => {
+            const response = await axios.put(
+                'https://react-redux-advanced-max-default-rtdb.firebaseio.com/cart.json',
+                cartData
+            );
+
+            console.log('response', response);
+        };
+
+        dispatch(uiActions.setPendingHttpStatus());
+
+        try {
+            await sendRequest();
+            dispatch(uiActions.setSuccessHttpStatus());
+        } catch (error) {
+            dispatch(uiActions.setErrorHttpStatus());
+        }
+    };
+};
 
 export const cartActions = cartSlice.actions;
 
