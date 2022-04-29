@@ -8,7 +8,20 @@ const initialState = {
 const uiSlice = createSlice({
     name: 'ui',
     initialState,
-    reducers: {}
+    reducers: {
+        setPendingHttpStatus(state) {
+            state.isLoading = true;
+            state.error = false;
+        },
+        setSuccessHttpStatus(state) {
+            state.isLoading = false;
+            state.error = false;
+        },
+        setErrorHttpStatus(state) {
+            state.isLoading = true;
+            state.error = true;
+        }
+    }
 });
 
 export const uiActions = uiSlice.actions;

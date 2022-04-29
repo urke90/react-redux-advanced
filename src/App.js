@@ -7,10 +7,6 @@ import Products from './components/Shop/Products';
 function App() {
     const showCart = useSelector((state) => state.cartReducer.showCart);
 
-    const bla = useSelector((state) => {
-        console.log('state', state);
-    });
-
     return (
         <Layout>
             {showCart && <Cart />}
@@ -22,14 +18,10 @@ function App() {
 export default App;
 
 /**
- * 1. click on My Cart btn in header should toggle shopping cart component ===== DONE
- * 2. click on product will add product to the cart => if product exists then just increase quantity
- * 3. if user clicks ( - ) on item in shopping cart decrease quantity ===> if q = 1 then remove from cart
- */
-
-/**
- * * STATE
- * 1. showCart ===> boolean ======> DONE
- * 2. cart ===> [] of products =========> DONE
- * 3. if we have different products we will need ID to differentiate them ( add uuid or React 18 hook)
+ * ? SOMETHING LIKE THIS!?!??!?!?!?
+ *
+ * 1. before send set status to: PENDING
+ * 2. if response is success set status to: SUCCESS
+ * 3. if we have error set status to: ERROR
+ *
  */
